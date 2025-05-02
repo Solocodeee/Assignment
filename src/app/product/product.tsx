@@ -6,6 +6,7 @@ import Link from "next/link";
 import Add from "../add/page";
 import Edit from "../edit/[id]/page";
 import Swal from "sweetalert2";
+import Image from "next/image";
 
 // ✅ تعريف نوع المنتج
 type Product = {
@@ -38,7 +39,8 @@ function Product() {
 
   const filteredData = data.filter(({ title, category }) => {
     const titleMatch = title.toLowerCase().includes(searchTitle.toLowerCase());
-    const categoryMatch = selectedCategory === "" || category === selectedCategory;
+    const categoryMatch =
+      selectedCategory === "" || category === selectedCategory;
     return titleMatch && categoryMatch;
   });
 
@@ -176,10 +178,13 @@ function Product() {
                 >
                   <td className="py-3 px-4">{d.id}</td>
                   <td className="py-3 px-4">
-                    <img
+                  
+                    <Image
                       src={d.image}
                       alt={d.title}
-                      className="h-14 w-14 object-contain"
+                      width={56} // 14 * 4 = 56px
+                      height={56}
+                      className="object-contain"
                     />
                   </td>
                   <td className="py-3 px-4">{d.title}</td>
@@ -250,7 +255,7 @@ function Product() {
             </button>
 
             {editProductId ? (
-              <Edit  onClose={toggleDrawer} />
+              <Edit onClose={toggleDrawer} />
             ) : (
               <Add onClose={toggleDrawer} />
             )}
