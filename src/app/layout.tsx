@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import "./globals.css";
+import Slider from "./Componants/Sliderbar/Slide/Slidebar";
+import Dashboard from "./Componants/Dashboard/dashbord/dashboard";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +28,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* ✅ استخدم flex لتقسيم السايدبار والمحتوى */}
+        <div className="min-h-screen flex bg-gray-50">
+          
+          {/* Sidebar ثابت */}
+          <div className="relative min-h-screen bg-gray-50 overflow-x-hidden">
+            <Slider />
+          </div>
+
+          {/* المحتوى الرئيسي بياخد المساحة المتبقية */}
+          <div className="flex-1  overflow-x-hidden container ms:ml-64 ">
+            <main className="mt-4">{children}</main>
+          </div>
+        </div>
       </body>
     </html>
   );
