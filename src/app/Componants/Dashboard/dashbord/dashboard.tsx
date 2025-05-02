@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Header from "../header/header";
 import StateCards from "../StateCardsd/StateCards";
