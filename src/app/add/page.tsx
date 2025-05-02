@@ -136,9 +136,7 @@ export default function CreateProduct({ productId, onClose }: CreateProductProps
         </div>
       </div>
 
-      {/* Form */}
       <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4 overflow-auto">
-        {/* Product Name */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
           <input
@@ -190,7 +188,6 @@ export default function CreateProduct({ productId, onClose }: CreateProductProps
           </div>
         </div>
 
-        {/* Description */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
           <textarea
@@ -203,7 +200,6 @@ export default function CreateProduct({ productId, onClose }: CreateProductProps
           ></textarea>
         </div>
 
-        {/* Save Button */}
         <div className="pt-4">
           <button
             type="submit"

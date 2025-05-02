@@ -1,4 +1,4 @@
-"use client"
+"use client"; // 👈 أضف هذا السطر في أول الملف
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -178,7 +178,6 @@ function Product() {
                 >
                   <td className="py-3 px-4">{d.id}</td>
                   <td className="py-3 px-4">
-                  
                     <Image
                       src={d.image}
                       alt={d.title}
