@@ -1,10 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import dynamic from "next/dynamic";
 
-const ApexChart = () => {
+// استيراد المخطط ديناميكيًا بدون SSR
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
+
+const ChartComponent = () => {
   const [state] = useState<{
     series: number[];
     options: ApexOptions;
@@ -13,7 +18,7 @@ const ApexChart = () => {
     options: {
       chart: {
         type: "donut",
-        width: "100%", // جعل العرض مرنًا ليشغل 100% من المساحة المتاحة
+        width: "100%",
       },
       labels: ["Sale", "Distribute", "Return"],
       dataLabels: {
@@ -24,10 +29,10 @@ const ApexChart = () => {
           breakpoint: 480,
           options: {
             chart: {
-              width: "100%", // يأخذ كامل العرض في الشاشات الصغيرة
+              width: "100%",
             },
             legend: {
-              position: "bottom", // يظهر في الأسفل عند الشاشات الصغيرة
+              position: "bottom",
               horizontalAlign: "center",
               offsetY: 10,
               show: true,
@@ -38,7 +43,7 @@ const ApexChart = () => {
           breakpoint: 768,
           options: {
             chart: {
-              width: "80%", // تحديد العرض على شاشات التابلت
+              width: "80%",
             },
             legend: {
               position: "bottom",
@@ -52,7 +57,7 @@ const ApexChart = () => {
           breakpoint: 1024,
           options: {
             chart: {
-              width: "70%", // تحديد العرض على الشاشات الأكبر
+              width: "70%",
             },
             legend: {
               position: "bottom",
@@ -64,31 +69,30 @@ const ApexChart = () => {
         },
       ],
       legend: {
-        position: "bottom", // جعلها في الأسفل
-        horizontalAlign: "center", // جعلها أفقية
-        offsetY: 10, // تحديد المسافة
-        show: true, // التأكد من أن الأسطورة تظهر
+        position: "bottom",
+        horizontalAlign: "center",
+        offsetY: 10,
+        show: true,
       },
     },
   });
 
   return (
-    <div className="bg-white py-20  flex justify-center items-center">
-    <div className="w-full max-w-[447px] h-auto bg-white">
-      <div className="chart-wrap">
-        <div id="chart">
-          <ReactApexChart
-            options={state.options}
-            series={state.series}
-            type="donut"
-            width="100%"
-          />
+    <div className="bg-white py-20 flex justify-center items-center">
+      <div className="w-full max-w-[447px] h-auto bg-white">
+        <div className="chart-wrap">
+          <div id="chart">
+            <ReactApexChart
+              options={state.options}
+              series={state.series}
+              type="donut"
+              width="100%"
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  
   );
 };
 
-export default ApexChart;
+export default ChartComponent;

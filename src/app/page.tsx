@@ -1,3 +1,4 @@
+"use client"
 import Dashboard from "./Componants/Dashboard/dashbord/dashboard";
 
 export default function Home() {
